@@ -23,7 +23,9 @@ app.use('/writequiz',Write)
 app.use('/history',History)
 app.use('/results',Result)
 app.use('/profile',Profile)
-
+app.get('/', (req, res) => {
+    res.send('HI Dinesh');
+});
 app.listen(PORT,()=>{
     console.log(`Server is running on ${PORT}`);
 })
