@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
-require('../Models/db'); // <-- update path as needed
+require('../Models/db'); 
 
 const AuthRouter = require('../routes/AuthRouter');
 const Quiz = require('../routes/QuizCreate');
