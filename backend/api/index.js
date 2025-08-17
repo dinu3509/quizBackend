@@ -1,5 +1,4 @@
 const express = require('express');
-const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -29,5 +28,8 @@ app.get('/', (req, res) => {
   res.send('HI Dinesh');
 });
 
-// ✅ Export a serverless-compatible handler
-module.exports = serverless(app);
+// Run server on port 8080
+const PORT = 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
