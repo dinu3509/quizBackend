@@ -54,22 +54,30 @@ Each question should have:
 
     // Match the Following
     else if (type === "Match The Pairs") {
-      questions = await strict_output(
-        `You are a helpful AI that generates 'Match the Following' questions.
-Each question should have at least 3 pairs. Output format must be strict.`,
-        new Array(number).fill(`Generate a match-the-following question about ${topic}`),
-        {
-          question: "match the following question",
-          pairs: [
-            { left: "item 1", right: "match 1" },
-            { left: "item 2", right: "match 2" },
-            { left: "item 3", right: "match 3" }
-          ]
-        }
-      );
-
-      questions = questions.filter(q => q.question && q.pairs && q.pairs.length >= 3);
+    questions = await strict_output(
+    `You are a helpful AI that generates 'Match the Following' questions.
+Each question must have:
+- A clear instruction as "Match the following"
+- At least 3 pairs.
+- Format output strictly in JSON.`,
+    new Array(number).fill(`Generate a match-the-following question about ${topic}`),
+    {
+      question: "match the following question",
+      leftItems: ["item 1", "item 2", "item 3"],
+      rightItems: ["match 1", "match 2", "match 3"]
     }
+  );
+
+  // validate
+  questions = questions.filter(q =>
+    q.question &&
+    Array.isArray(q.leftItems) &&
+    Array.isArray(q.rightItems) &&
+    q.leftItems.length >= 3 &&
+    q.rightItems.length >= 3 &&
+    q.leftItems.length === q.rightItems.length
+  );
+}
 
     // If no valid type
     else {
