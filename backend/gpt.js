@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  baseURL: "https://openrouter.ai/api/v1"
+  baseURL: "https://models.github.ai/inference"
 });
 
 /**
@@ -25,7 +25,7 @@ async function strict_output(
   outputFormat,
   defaultCategory = "",
   outputValueOnly = false,
-  model = "z-ai/glm-4.5-air:free",
+  model = "openai/gpt-4o",
   temperature = 1,
   numTries = 3,
   verbose = false
